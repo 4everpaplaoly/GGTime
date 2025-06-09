@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  GGTime
 //
-//  Created by hyeyun jeong on 6/7/25.
+//  Created by hyeyun jeong on 5/20/25.
 //
 
 import UIKit

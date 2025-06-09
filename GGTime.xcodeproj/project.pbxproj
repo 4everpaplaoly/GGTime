@@ -6,12 +6,21 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		962335F82DF34FEF00188C08 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 962335F72DF34FEF00188C08 /* FirebaseAnalytics */; };
+		962335FA2DF34FEF00188C08 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 962335F92DF34FEF00188C08 /* FirebaseAuth */; };
+		962335FC2DF34FEF00188C08 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 962335FB2DF34FEF00188C08 /* FirebaseCore */; };
+		962335FE2DF34FEF00188C08 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 962335FD2DF34FEF00188C08 /* FirebaseFirestore */; };
+		962336002DF34FEF00188C08 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 962335FF2DF34FEF00188C08 /* FirebaseMessaging */; };
+		962336022DF34FEF00188C08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 962336012DF34FEF00188C08 /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		962335BF2DF34E6600188C08 /* GGTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		962335D12DF34E6A00188C08 /* Exceptions for "GGTime" folder in "GGTime" target */ = {
+		962335F52DF34EC800188C08 /* Exceptions for "GGTime" folder in "GGTime" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +33,7 @@
 		962335C12DF34E6600188C08 /* GGTime */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				962335D12DF34E6A00188C08 /* Exceptions for "GGTime" folder in "GGTime" target */,
+				962335F52DF34EC800188C08 /* Exceptions for "GGTime" folder in "GGTime" target */,
 			);
 			path = GGTime;
 			sourceTree = "<group>";
@@ -36,6 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962335F82DF34FEF00188C08 /* FirebaseAnalytics in Frameworks */,
+				962335FE2DF34FEF00188C08 /* FirebaseFirestore in Frameworks */,
+				962336002DF34FEF00188C08 /* FirebaseMessaging in Frameworks */,
+				962335FC2DF34FEF00188C08 /* FirebaseCore in Frameworks */,
+				962335FA2DF34FEF00188C08 /* FirebaseAuth in Frameworks */,
+				962336022DF34FEF00188C08 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +93,12 @@
 			);
 			name = GGTime;
 			packageProductDependencies = (
+				962335F72DF34FEF00188C08 /* FirebaseAnalytics */,
+				962335F92DF34FEF00188C08 /* FirebaseAuth */,
+				962335FB2DF34FEF00188C08 /* FirebaseCore */,
+				962335FD2DF34FEF00188C08 /* FirebaseFirestore */,
+				962335FF2DF34FEF00188C08 /* FirebaseMessaging */,
+				962336012DF34FEF00188C08 /* FirebaseStorage */,
 			);
 			productName = GGTime;
 			productReference = 962335BF2DF34E6600188C08 /* GGTime.app */;
@@ -95,6 +116,7 @@
 				TargetAttributes = {
 					962335BE2DF34E6600188C08 = {
 						CreatedOnToolsVersion = 16.3;
+						LastSwiftMigration = 1630;
 					};
 				};
 			};
@@ -104,9 +126,14 @@
 			knownRegions = (
 				en,
 				Base,
+				"Base 2",
+				"base 2",
 			);
 			mainGroup = 962335B62DF34E6600188C08;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 962335C02DF34E6600188C08 /* Products */;
 			projectDirPath = "";
@@ -143,6 +170,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -160,6 +188,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yun.GGTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GGTime/GGTime-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -170,6 +200,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -187,6 +218,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yun.GGTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GGTime/GGTime-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -333,6 +365,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		962335F72DF34FEF00188C08 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		962335F92DF34FEF00188C08 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		962335FB2DF34FEF00188C08 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		962335FD2DF34FEF00188C08 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		962335FF2DF34FEF00188C08 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		962336012DF34FEF00188C08 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 962335F62DF34FEF00188C08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 962335B72DF34E6600188C08 /* Project object */;
 }
