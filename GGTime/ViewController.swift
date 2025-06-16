@@ -7,8 +7,11 @@ import FirebaseCore
 struct ViewControllerWrapper: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
-        return vc
+        
+        // NavigationController를 불러와서 반환 (Storyboard ID: "NavigationController")
+        let nav = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+        
+        return nav
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
@@ -21,15 +24,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnFindPasswd: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     @IBAction func joinButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let joinVC = storyboard.instantiateViewController(withIdentifier: "JoinViewController") as? JoinViewController {
-            self.present(joinVC, animated: true, completion: nil)
-        }
+        let joinVC = storyboard.instantiateViewController(withIdentifier: "JoinViewController") as! JoinViewController
+        self.navigationController?.pushViewController(joinVC, animated: true)
     }
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {
@@ -40,18 +38,20 @@ class ViewController: UIViewController {
         }
 
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+
             if let error = error {
-                self?.showAlert(message: "로그인 실패: \(error.localizedDescription)")
+                self.showAlert(message: "로그인 실패: \(error.localizedDescription)")
                 return
             }
 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-                mainVC.modalPresentationStyle = .fullScreen
-                self?.present(mainVC, animated: true, completion: nil)
-            }
+            // 로그인 성공 시 탭바 컨트롤러 보여주기
+            let tabBarVC = CustomTabBarController()
+            tabBarVC.modalPresentationStyle = .fullScreen
+            self.present(tabBarVC, animated: true)
         }
     }
+
 
     func showAlert(message: String) {
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)

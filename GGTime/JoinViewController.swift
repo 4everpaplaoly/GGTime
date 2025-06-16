@@ -12,22 +12,30 @@ class JoinViewController: UIViewController {
     @IBOutlet weak var schoolButton: UIButton!
     @IBOutlet weak var majorButton: UIButton!
     @IBOutlet weak var statusButton: UIButton!
-    
+
     let schools = ["평택대학교", "한경국립대학교", "오산대학교", "호서대학교"]
     let majors = ["융합소프트웨어학과", "스마트콘텐츠학과", "스마트모빌리티학과", "데이터정보학과"]
     let statuses = ["재학생", "복학생", "휴학생"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 버튼 기본 타이틀을 첫 메뉴 항목으로 설정 (기본 선택값 문제 해결)
+
+        let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backBtnTapped))
+
+        self.navigationItem.leftBarButtonItem = backBtn
+
+        // 초기 타이틀 설정
         schoolButton.setTitle(schools.first, for: .normal)
         majorButton.setTitle(majors.first, for: .normal)
         statusButton.setTitle(statuses.first, for: .normal)
-        
+
         setupMenus()
     }
-    
+
+    @objc func backBtnTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func setupMenus() {
         schoolButton.menu = UIMenu(title: "", children: schools.map { title in
             UIAction(title: title) { [weak self] _ in
@@ -35,14 +43,14 @@ class JoinViewController: UIViewController {
             }
         })
         schoolButton.showsMenuAsPrimaryAction = true
-        
+
         majorButton.menu = UIMenu(title: "", children: majors.map { title in
             UIAction(title: title) { [weak self] _ in
                 self?.majorButton.setTitle(title, for: .normal)
             }
         })
         majorButton.showsMenuAsPrimaryAction = true
-        
+
         statusButton.menu = UIMenu(title: "", children: statuses.map { title in
             UIAction(title: title) { [weak self] _ in
                 self?.statusButton.setTitle(title, for: .normal)
@@ -55,27 +63,27 @@ class JoinViewController: UIViewController {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty,
               let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty,
+              let grade = gradeTextField.text, !grade.isEmpty,
               let school = schoolButton.title(for: .normal), schools.contains(school),
               let major = majorButton.title(for: .normal), majors.contains(major),
-              let status = statusButton.title(for: .normal), statuses.contains(status),
-              let grade = gradeTextField.text, !grade.isEmpty else {
-            showAlert(message: "모든 필드를 입력해 주세요.")
+              let status = statusButton.title(for: .normal), statuses.contains(status) else {
+            showAlert(message: "모든 필드를 정확히 입력해 주세요.")
             return
         }
-        
+
         guard password == confirmPassword else {
             showAlert(message: "비밀번호와 비밀번호 확인이 일치하지 않습니다.")
             return
         }
 
-        join(email: email, password: password, school: school, major: major, grade: grade, studentStatus: status) { error in
+        join(email: email, password: password, school: school, major: major, grade: grade, studentStatus: status) { [weak self] error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self.showAlert(message: "회원가입 실패: \(error.localizedDescription)")
+                    self?.showAlert(message: "회원가입 실패: \(error.localizedDescription)")
                 } else {
-                    self.showAlert(message: "회원가입 성공!", completion: {
-                        self.dismiss(animated: true, completion: nil)
-                    })
+                    self?.showAlert(message: "회원가입 성공!") {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
@@ -116,3 +124,4 @@ class JoinViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
